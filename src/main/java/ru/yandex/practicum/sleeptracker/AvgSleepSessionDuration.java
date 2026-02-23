@@ -14,7 +14,7 @@ public class AvgSleepSessionDuration implements Function<List<SleepSession>, Sle
                 ))
                 .reduce(Duration.ZERO, Duration::plus);
 
-        long avgMinutes = totalDuration.toMinutes()/sessions.size();
+        long avgMinutes = totalDuration.toMinutes() / sessions.size();
         Duration avgDuration = Duration.ofMinutes(avgMinutes);
 
         long hours = avgDuration.toHours();
