@@ -8,6 +8,7 @@ public class AvgSleepSessionDuration implements Function<List<SleepSession>, Sle
     @Override
     public SleepAnalysisResult apply(List<SleepSession> sessions) {
         Duration totalDuration = sessions.stream()
+                .filter(s -> s.getBedTime() != null && s.getAwakingTime() != null)
                 .map(s -> Duration.between(
                         s.getBedTime(),
                         s.getAwakingTime()
