@@ -71,6 +71,7 @@ public class UserChronotype implements Function<List<SleepSession>, SleepAnalysi
                 .toLocalTime();
 
         LocalTime latestAwakingTime = sessions.stream()
+                .filter(s -> s.getAwakingTime() != null)
                 .map(SleepSession::getAwakingTime)
                 .max(Comparator.naturalOrder())
                 .orElseThrow()
