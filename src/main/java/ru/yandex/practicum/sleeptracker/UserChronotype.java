@@ -64,6 +64,7 @@ public class UserChronotype implements Function<List<SleepSession>, SleepAnalysi
         //определение временного промежутка ночной сессии,
         //если за одну ночь было несколько сессий (с пробуждениями)
         LocalTime earliestBedTime = sessions.stream()
+                .filter(s -> s.getBedTime() != null)
                 .map(SleepSession::getBedTime)
                 .min(Comparator.naturalOrder())
                 .orElseThrow()
