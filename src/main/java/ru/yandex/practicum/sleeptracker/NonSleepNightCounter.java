@@ -25,6 +25,7 @@ public class NonSleepNightCounter implements Function<List<SleepSession>, SleepA
         }
 
         LocalDate dateTo = sessions.stream()
+                .filter(s -> s.getAwakingTime() != null)
                 .max(Comparator.comparing(SleepSession::getAwakingTime))
                 .orElseThrow().getAwakingTime().toLocalDate();
 
