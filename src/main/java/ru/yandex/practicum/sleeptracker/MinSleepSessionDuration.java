@@ -9,6 +9,7 @@ public class MinSleepSessionDuration implements Function<List<SleepSession>, Sle
     @Override
     public SleepAnalysisResult apply(List<SleepSession> sessions) {
         SleepSession minSession = sessions.stream()
+                .filter(s -> s.getBedTime() != null && s.getAwakingTime() != null)
                 .min(Comparator.comparingLong(
                         s -> Duration.between(
                                 s.getBedTime(),
