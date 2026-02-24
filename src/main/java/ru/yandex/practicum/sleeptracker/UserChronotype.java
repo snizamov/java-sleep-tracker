@@ -14,6 +14,7 @@ public class UserChronotype implements Function<List<SleepSession>, SleepAnalysi
     public SleepAnalysisResult<UserClassificators> apply(List<SleepSession> sessions) {
 
         Map<LocalDate, List<SleepSession>> nights = sessions.stream()
+                .filter(s -> s.getAwakingTime() != null && s.getBedTime() != null)
                 .filter(s -> s.getBedTime().toLocalDate()
                         .isBefore(s.getAwakingTime().toLocalDate()) ||
                         s.getBedTime().toLocalTime()
