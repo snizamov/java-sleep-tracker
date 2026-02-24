@@ -12,6 +12,7 @@ public class NonSleepNightCounter implements Function<List<SleepSession>, SleepA
     @Override
     public SleepAnalysisResult apply(List<SleepSession> sessions) {
         LocalDateTime firstNightDateTime = sessions.stream()
+                .filter(s -> s.getBedTime() != null)
                 .min(Comparator.comparing(SleepSession::getBedTime))
                 .orElseThrow().getBedTime();
 
