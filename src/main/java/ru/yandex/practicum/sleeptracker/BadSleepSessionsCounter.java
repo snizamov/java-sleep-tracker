@@ -7,7 +7,7 @@ public class BadSleepSessionsCounter implements Function<List<SleepSession>, Sle
     @Override
     public SleepAnalysisResult apply(List<SleepSession> sessions) {
         List<SleepSession> badSessions = sessions.stream()
-                .filter(s -> s.getSleepQuality().equals("BAD"))
+                .filter(s -> "BAD".equals(s.getSleepQuality()))
                 .toList();
 
         return new SleepAnalysisResult<>(
