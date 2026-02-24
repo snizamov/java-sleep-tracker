@@ -9,6 +9,7 @@ public class MaxSleepSessionDuration implements Function<List<SleepSession>, Sle
     @Override
     public SleepAnalysisResult apply(List<SleepSession> sessions) {
         SleepSession maxSession = sessions.stream()
+                .filter(s -> s.getBedTime() != null && s.getAwakingTime() != null)
                 .max(Comparator.comparingLong(
                         s -> Duration.between(
                                         s.getBedTime(),
